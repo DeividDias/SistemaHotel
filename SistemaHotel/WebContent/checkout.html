@@ -1,0 +1,58 @@
+<html ng-app="checkout">
+<head>
+    <meta charset="utf-8">
+    <title>Check-Out</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="css/checkout.css" rel="stylesheet">
+    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <style type="text/css"></style>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-resource.js"></script>
+    <script src="js/checkout.module.js"></script>
+    <script src="js/checkout.controller.js"></script>
+    <script src="js/editController.js"></script>
+    <script src="js/pagarController.js"></script>
+    <script src="js/consumoController.js"></script>
+    <script src="js/ui-bootstrap-tpls.js"></script>
+</head>
+    <body ng-controller="CheckOutController">
+        <div class="container-checkout">
+            <div class="row">
+                <div>
+                    <ul class="event-list">
+                        <li ng-repeat="hospede in hospedes">
+                            <time datetime="2014-07-20 0000">
+                                <span class="day">{{hospede.quarto}}</span>
+                                <span class="month">Qrt</span>
+                            </time>
+                            <div class="info">
+                                <h2 class="title">{{hospede.nome}}</h2>
+
+                                <form class="desc">
+                                    <p>Data Entrada: {{hospede.dataent}}</p>
+
+                                    <p>Data Saida: {{hospede.datasai}}</p>
+                                </form>
+                                <ul>
+                                    <li style="width:50%;"><span class="fa fa-money"></span>{{hospede.valor}}</li>
+                                </ul>
+                            </div>
+                            <div class="social">
+                                <ul>
+                                    <!--li class="facebook" style="width:33%;"><a data-toggle="modal" data-target="#editar" data-original-title><img src="img/edit45.png"></a></li-->
+                                    <li class="facebook" style="width:33%;"><a ng-click="open(hospede)"><img src="img/edit45.png"></a></li>
+                                    <li class="twitter" style="width:34%;"><a ng-click="openPagar()"><img src="img/currency2.png"></a></li>
+                                    <li class="google-plus" style="width:33%;"><a ng-click="openConsumo()"><img src="img/shopping3.png"></a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

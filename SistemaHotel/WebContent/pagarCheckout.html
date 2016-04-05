@@ -1,0 +1,51 @@
+<div>
+    <div class="panel panel-primary">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="panel-title" id="pagarLabel">Pagamento Check-Out</h4>
+            </div>
+            <form action="#" method="post" accept-charset="utf-8">
+                <div style="padding: 5px;">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 10px;">
+                            <a>Valor do consumo<input class="form-control" name="consumo" placeholder="Valor Consumo"
+                                                      type="text" required="" autofocus="" ng-model="valorConsumo"></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 10px;">
+                            <a>Valor da diária<input class="form-control" name="diaria" placeholder="Valor Diária"
+                                                     type="text" required="" autofocus="" ng-model="valorDiaria"></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 10px;">
+                            <a>Valor total<input class="form-control" name="total" placeholder="Valor Total" type="text"
+                                                 required="" autofocus="" ng-model="valorTotal"></a>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="padding: 10px">
+                            <a>Tipo pagamento
+                                <div>
+                                    <img src="img/visa4.png">
+                                    <img src="img/mastercard5.png">
+                                    <img src="img/american15.png">
+                                    <img src="img/paypal10.png">
+                                    <img src="img/citibank.png">
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer" style="margin-bottom:-14px;">
+                    <input type="button" class="btn btn-success" value="Concluir" ng-click="ok()">
+                    <button type="button" class="btn btn-default btn-close" ng-click="cancel()">
+                        Cancelar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="modal-body">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="panel-title" id="editLabel">Check-Out</h4>
+        </div>
+        <form action="#" method="post" accept-charset="utf-8">
+            <div class="modal-body" style="padding: 5px;">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12" style="padding-bottom: 10px;">
+                        <input class="form-control" name="nome" placeholder="Nome" type="text" required="" autofocus="" ng-model="nome">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 10px;">
+                        <a>Data Entrada: <input class="form-control" name="dataEntrada" placeholder="Data Entrada"
+                                                type="text" required="" ng-model="dataent"></a>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 10px;">
+                        <a>Data Saída:<input class="form-control" name="dataSaida" placeholder="Data Saida" type="text"
+                                             required="" ng-model="datasai"></a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12" style="padding-bottom: 10px;">
+                        <input class="form-control" name="acompanhante" placeholder="Qtd. Acompanhante" type="number"
+                               required="" ng-model="qtdAcompa">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12" style="padding-bottom: 10px;">
+                        <input class="form-control" name="valor" placeholder="Valor" type="text" required="" ng-model="valor">
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer" style="margin-bottom:-34px;">
+                <input type="button" class="btn btn-success" value="Salvar" ng-click="ok()">
+                <input type="reset" class="btn btn-danger" value="Limpar">
+                <button style="float: right;" type="button" class="btn btn-default btn-close" ng-click="cancel()">
+                    Cancelar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,81 @@
+<html lang="en" ng-app="reservaModule">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sistema Hotel</title>
+	
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/bootstrap-theme.css" rel="stylesheet">
+	<link href="css/carousel.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-resource.js"></script>
+	<script src="js/reservaControl.js"></script>
+	
+	<!-- Include Required Prerequisites -->
+	<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<!-- Include Date Range Picker -->
+	<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+
+  </head>
+  <body ng-controller="reservaControl">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+          <h3 class="panel-title">Reserva</h3>
+        </div>
+		<div class="panel-body">
+			
+			<form>
+				<div class="form-group">
+				  <div>
+					<label for="reserva.periodo" disable="true">Data hospedagem</label>
+					<input type="text" name="daterange" class="form-control" ng-model="reserva.periodo" placeholder="chegada e saída" value="01/01/2015 - 01/31/2015" required>
+				  </div>
+				  <div>
+					<label for="reserva.qntquartos" disable="true">Quantidade de quartos</label>
+					<input type="text" class="form-control" ng-model="reserva.qntquartos" placeholder="0" required>
+				  </div>
+					<div>
+						<label for="reserva.qntpessoas" disable="true">Quantidade de hospedes</label>
+						<input type="text" class="form-control" ng-model="reserva.qntpessoas" placeholder="0" required>
+					</div> 				  
+				  <br>
+					<button class="btn btn-primary" type="button" ng-click="disponibilidade()">Verificar Disponibilidade</button>
+					<!-- <button class="btn btn-primary" type="button">Lala</button> -->
+				</div>
+			</form>
+			
+		</div>
+	</div>
+	
+	<div st-table="quartos" class="panel panel-default" ng-show="displayQuartos">
+		<div class="panel-heading">Quartos</div>
+		<div class="panel-body">
+		</div>
+		<table class="table table-condensed">
+			<thead>
+				<tr>
+				  <!-- <th><input type="checkbox"></th> -->
+				  <th><input type="checkbox" ng-model="model.allItemsSelected" ng-change="selectAll()"></th>
+				  <th>Tipo do quarto</th>
+				  <th>Diaria</th>
+				  <th>Quantidade Disponivel</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="quarto in model.quartos" ng-click="seleciona(quarto)">
+				  <!-- <th><input type="checkbox"></th> -->
+				  <td><input type="checkbox" ng-model="quarto.isChecked" ng-change="selectEntity()"></td>
+				  <th>{{quarto.tipo}}</th>
+				  <th>{{quarto.diaria}}</th>
+				  <th>{{quarto.quantidade}}</th>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+  </body>
+</html>
