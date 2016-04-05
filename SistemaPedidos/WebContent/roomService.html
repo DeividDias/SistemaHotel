@@ -1,0 +1,140 @@
+<html lang="en" ng-app="roomServiceModule">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-resource.js"></script>
+    <script src="js/roomServiceControl.js"></script>
+
+</head>
+<body ng-controller="roomServiceControl">
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Room Service</h3>
+    </div>
+
+    <div class="panel-body">
+        <div>
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#cadastro" aria-controls="cadastro" role="tab"
+                                                          data-toggle="tab">Cadastro</a></li>
+                <li role="presentation"><a href="#dados" aria-controls="dados" role="tab" data-toggle="tab">Dados</a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="cadastro">
+                    <form name="formServicoDeQuarto" novalidate>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error': formServicoDeQuarto.codigo.$invalid && formServicoDeQuarto.codigo.$dirty }">
+                                    <label for="codigo" disable="true">Código <span class="require">*</span></label>
+                                    <input type="number" class="form-control" ng-model="servicoDeQuarto.codigo"
+                                           placeholder="Código" required>
+
+                                    <div ng-show="formServicoDeQuarto.codigo.$dirty &amp;&amp; formServicoDeQuarto.codigo.$invalid"
+                                         class="ng-hide">
+                                        <i class="alert" ng-show="formServicoDeQuarto.codigo.$error.required">Campo
+                                            Obrigatório!</i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error': formServicoDeQuarto.codigo.$invalid && formServicoDeQuarto.codigo.$dirty }">
+                                    <label for="quarto" disable="true">Quarto <span class="require">*</span></label>
+                                    <select name="quarto" ng-options="quarto for quarto in quartos track by quarto"
+                                            ng-model="servicoDeQuarto.quarto" class="form-control"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error': formServicoDeQuarto.produto.$invalid && formServicoDeQuarto.produto.$dirty }">
+                                    <label for="produto">Produto <span class="require">*</span></label>
+                                    <select name="produto"
+                                            ng-options="(produto.nome + ' - ' + (produto.valor | currency:'R$':2)) for produto in produtos track by produto.nome"
+                                            ng-model="tmpProduto" class="form-control"></select>
+
+                                    <div ng-show="formServicoDeQuarto.produto.$dirty &amp;&amp; formServicoDeQuarto.produto.$invalid"
+                                         class="ng-hide">
+                                        <i class="alert" ng-show="formServicoDeQuarto.produto.$error.required">Campo
+                                            Obrigatório!</i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 pull-down">
+                                <button class="btn btn-primary" style="text-align: center; margin-top: 23px" type="button" ng-click="inserirProduto()"><span
+                                        class="glyphicon-book"></span>&nbsp;Inserir
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <table class="table table-responsive">
+                                    <tr>
+                                        <th>Nome</th>
+                                        <th>Valor</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                    <tr ng-repeat="produto in servicoDeQuarto.produtos">
+                                        <th>{{produto.nome}}</th>
+                                        <th>{{produto.valor | currency:"R$":2}}</th>
+                                        <th>
+                                            <button class="btn btn-danger" type="button"
+                                                    ng-click="removerProduto(produto)"><span
+                                                    class="glyphicon-remove"></span>&nbsp;Remover
+                                            </button>
+                                        </th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                    <br>
+
+                    <div class="pull-right">
+                        <button class="btn btn-primary" type="button" ng-click="limpar()"><span
+                                class="glyphicon-book"></span>&nbsp;Novo
+                        </button>
+                        <button class="btn btn-primary" type="submit" ng-click="salvar()"><span
+                                class="glyphicon-save-file"></span>&nbsp;Salvar
+                        </button>
+                        <button class="btn btn-primary" type="button" ng-click="remover()"><span
+                                class="glyphicon-remove"></span>&nbsp;Remover
+                        </button>
+                    </div>
+                </div>
+
+                <div role="tabpanel" class="tab-pane" id="dados">
+                    <table class="table table-responsive">
+                        <tr>
+                            <th>Código</th>
+                            <th>Quarto</th>
+                            <th>Produto</th>
+                            <th>Valor</th>
+                        </tr>
+                        <tr ng-repeat="servicoDeQuarto in servicoDeQuartos track by servicoDeQuarto.codigo" ng-click="seleciona(servicoDeQuarto)">
+                            <th>{{servicoDeQuarto.codigo}}</th>
+                            <th>{{servicoDeQuarto.quarto}}</th>
+                            <th>{{servicoDeQuarto.produtos[0].nome}}</th>
+                            <th>{{calculaValor(servicoDeQuarto.produtos) | currency:"R$":2}}</th>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

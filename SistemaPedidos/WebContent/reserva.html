@@ -1,0 +1,118 @@
+<html lang="en" ng-app="reservaModule">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sistema Hotel</title>
+	
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/bootstrap-theme.css" rel="stylesheet">
+	<link href="css/carousel.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-resource.js"></script>
+	<script src="js/reservaControl.js"></script>
+	
+	<!-- Include Required Prerequisites -->
+	<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<!-- Include Date Range Picker -->
+	<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+
+  </head>
+  <body ng-controller="reservaControl">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+          <h3 class="panel-title">Reserva</h3>
+        </div>
+		<div class="panel-body">
+			
+			<form>
+				<div class="form-group">
+				  <div>
+					<label for="reserva.periodo" disable="true">Data hospedagem</label>
+					<input type="daterange" name="daterange" class="form-control" ng-model="reserva.periodo" placeholder="chegada e saída" required>
+				  </div>
+				  <div>
+					<label for="reserva.qntquartos" disable="true">Quantidade de quartos</label>
+					<input type="text" class="form-control" ng-model="reserva.qntquartos" placeholder="0" required>
+				  </div>
+					<div>
+						<label for="reserva.qnthospedes" disable="true">Quantidade de hospedes</label>
+						<input type="text" class="form-control" ng-model="reserva.qnthospedes" placeholder="0" required>
+					</div>
+				  <br>
+					<button class="btn btn-primary" type="button" ng-click="disponibilidade()">Verificar Disponibilidade</button>
+				</div>
+			</form>
+			
+		</div>
+	</div>
+	
+	<div st-table="quartos" class="panel panel-default" ng-show="displayQuartos">
+		<div class="panel-heading">Quartos</div>
+		<div class="panel-body">
+		
+		<table class="table table-condensed">
+			<thead>
+				<tr>
+				  <th><input type="checkbox" ng-model="model.allItemsSelected" ng-change="selectAll()"></th>
+				  <th>Tipo do quarto</th>
+				  <th>Diaria</th>
+				  <th>Quantidade Disponivel</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="quarto in model.quartos" ng-class="{selected: quarto.isChecked}"">
+				  <!-- <th><input type="checkbox"></th> -->
+				  <td><input type="checkbox" ng-model="quarto.isChecked" ng-change="selectEntity()"></td>
+				  <th>{{quarto.tipo}}</th>
+				  <th>{{quarto.diaria}},00</th>
+				  <th>{{quarto.quantidade}}</th>
+				</tr>
+			</tbody>
+		</table>
+		
+		<div>
+			<button class="btn btn-primary" type="button" ng-click="calcularTotal()">Calcular Total</button>		
+			<h3><span class="label label-info">Diarias: {{qntDiarias}}</span></h3>
+			<h3><span class="label label-info">Valor da Reserva: {{reservavalor}},00</span></h3>
+			<h3><span class="label label-info">Valor Total: {{valortotal}},00</span></h3>
+		</div>
+		
+		</div>
+		
+	</div>
+	
+		
+	<div class="panel panel-default" ng-show="displayFimReserva">
+		<div class="panel-heading">
+			<h3 class="panel-title">Finalizar Reserva</h3>
+		</div>
+		<div class="panel-body">
+			
+			<form>
+				<div class="form-group">
+				  <div>
+					<label for="cpfcliente" disable="true">CPF do Cliente</label>
+					<input type="text" class="form-control" ng-model="cpfcliente" placeholder="CPF" required>
+				  </div>
+				  <br>
+				  <button class="btn btn-primary" type="button" ng-click="salvarReserva()">Salvar Reserva</button>
+				</div>
+			</form>
+			
+			<div ng-show="displaySucessoReserva">
+				<h3><span class="label label-info">{{nomecliente}} sua reserva foi realizada com sucesso!</span></h3>
+			</div>
+			
+			<div ng-show="displayErroReserva">
+				<h3><span class="label label-info">{{nomecliente}}</span></h3>
+			</div>
+			
+		</div>
+	</div>
+	
+  </body>
+</html>

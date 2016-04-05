@@ -1,0 +1,101 @@
+﻿<html lang="en" ng-app="clienteModule">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-resource.js"></script>    
+    <script src="js/clienteControl.js"></script>    
+
+  </head>
+  <body ng-controller="clienteControl">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Clientes</h3>
+        </div>
+        <div class="panel-body">
+          <div>
+            <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation" class="active"><a href="#cadastro" aria-controls="cadastro" role="tab" data-toggle="tab">Cadastro</a></li>
+              <li role="presentation"><a href="#dados" aria-controls="dados" role="tab" data-toggle="tab">Consulta</a></li>
+            </ul>
+
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane active" id="cadastro">
+                  <form>
+                    <div class="form-group">
+                      <div>
+                        <label for="cliente.codigo" >Código</label>
+                        <input type="text" class="form-control" disabled ng-model="cliente.codigo">
+                      </div>
+                      <div>
+                        <label for="cliente.nome" >Nome</label>
+                        <input type="text" class="form-control" ng-model="cliente.nome" placeholder="Nome">
+                      </div>
+                      <div>
+                        <label for="cliente.cpf">Cpf</label>
+                          <input type="text" class="form-control" ng-model="cliente.cpf" placeholder="Cpf">
+                      </div>
+                        <div>
+                            <label for="cliente.email" >E-mail</label>
+                            <input type="text" class="form-control" ng-model="cliente.email" placeholder="E-mail">
+                        </div>
+                        <div>
+                            <label for="cliente.endereco">Endereço</label>
+                            <input type="text" class="form-control" ng-model="cliente.endereco" placeholder="Endereço">
+                        </div>
+                        <div>
+                            <div>
+                                <label for="cliente.telefone">Telefone</label>
+                                <input type="text" class="form-control" ng-model="cliente.telefone" placeholder="Telefone">
+                            </div>
+                        </div>
+
+                        <div>
+                            <div>
+                                <label for="cliente.cidade">Cidade</label>
+                                <input type="text" class="form-control" ng-model="cliente.cidade" placeholder="Cidade">
+                            </div>
+                            </div>
+                                <br>
+                                <button class="btn btn-primary" type="button" ng-click="limpar()">Novo</button>
+                                <button class="btn btn-primary" type="button" ng-click="salvar()">Salvar</button>
+                                <button class="btn btn-primary" type="button">Alterar</button>
+                                <button class="btn btn-primary" type="button">Remover</button>
+                            </div>
+</form>
+                </div>
+              <div role="tabpanel" class="tab-pane" id="dados">
+                <table class="table table-condensed">
+                    <tr>
+                      <th>Código</th>
+                      <th>Nome</th>
+                      <th>Cpf</th>
+                      <th>E-mail</th>
+                      <th>Endereço</th>
+                      <th>Telefone</th>
+                      <th>Cidade</th>
+                    </tr>
+                    <tr ng-repeat="cliente in clientes" ng-click="seleciona(cliente)">
+                      <th>{{cliente.codigo}}</th>
+                      <th>{{cliente.nome}}</th>
+                      <th>{{cliente.cpf}}</th>
+                      <th>{{cliente.email}}</th>
+                      <th>{{cliente.endereco}}</th>
+                      <th>{{cliente.telefone}}</th>
+                      <th>{{cliente.cidade}}</th>
+                    </tr>                    
+                </table>
+
+              </div>
+            </div>
+        </div>
+      </div>
+  </body>
+</html>

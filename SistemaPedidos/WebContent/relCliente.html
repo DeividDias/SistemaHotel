@@ -1,0 +1,59 @@
+<html lang="en" ng-app="relClienteModule">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Relatório de Clientes</title>
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-resource.js"></script>    
+    <script src="js/relClienteControl.js"></script>
+    <script src="js/bootstrap-datetimepicker.js"></script>
+	
+	<!-- Include Required Prerequisites -->
+	<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<!-- Include Date Range Picker -->
+	<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+
+  </head>
+  <body ng-controller="relClienteControl">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Relatório de Clientes</h3>
+        </div>
+        <div class="panel-body">
+		
+		<!-- TESTE -->
+		
+		<div class="input-group"> <span class="input-group-addon">Filtro</span>
+
+		<input id="filter" type="text" class="form-control" placeholder="Nome, CPF, Ultima Hospedagem ou Quarto">
+		</div>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+				  <th>Código</th>
+				  <th>Nome</th>
+				  <th>CPF</th>
+				  <th>Ultima Hospedagem</th>
+				  <th>Ultimo Quarto</th>
+				</tr>
+			</thead>
+			<tbody class="searchable">
+				<tr ng-repeat="cliente in clientes" ng-click="seleciona(cliente)">
+				  <th>{{cliente.codigo}}</th>
+				  <th>{{cliente.nome}}</th>
+				  <th>{{cliente.cpf}}</th>
+				  <th>{{cliente.data}}</th>
+				  <th>{{cliente.quarto}}</th>
+				</tr>   
+			</tbody>
+		</table>
+
+  </body>
+</html>

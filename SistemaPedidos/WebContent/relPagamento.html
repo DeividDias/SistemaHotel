@@ -1,0 +1,111 @@
+<html lang="en" ng-app="relPagamentoModule">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Relatório de Pagamentos</title>
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-resource.js"></script>    
+    <script src="js/relPagamentoControl.js"></script>
+    <script src="js/bootstrap-datetimepicker.js"></script>
+	
+	<!-- Include Required Prerequisites -->
+	<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<!-- Include Date Range Picker -->
+	<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+
+  </head>
+  <body ng-controller="relPagamentoControl">
+   
+      <div class="panel panel-default">
+	  <!-- <div class="panel panel-primary"> -->
+	  
+        <div class="panel-heading">
+          <h3 class="panel-title">Relatório de Pagamentos</h3>
+        </div>
+        <div class="panel-body">
+		
+		<!-- TESTE -->
+		
+		<div class="input-group"> <span class="input-group-addon">Filtro</span>
+
+		<input id="filter" type="text" class="form-control" placeholder="Cliente, CPF ou Data de pagamento">
+		</div>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+				  <th>Código</th>
+				  <th>Data</th>
+				  <th>Cliente</th>
+				  <th>CPF</th>
+				  <th>Quarto</th>
+				  <th>Diárias</th>
+				  <th>Valor Total</th>
+				  <th>Nota Fiscal</th>
+				</tr>
+			</thead>
+			<tbody class="searchable">
+				<tr ng-repeat="pagamento in pagamentos" ng-click="seleciona(fornecedor)">
+				  <th>{{pagamento.codigo}}</th>
+				  <th>{{pagamento.data}}</th>
+				  <th>{{pagamento.cliente}}</th>
+				  <th>{{pagamento.cpf}}</th>
+				  <th>{{pagamento.quarto}}</th>
+				  <th>{{pagamento.estadia}}</th>
+				  <th>{{pagamento.valor}}</th>
+				  <th>
+					<a href={{pagamento.notafiscal}} class="btn btn-primary" data-toggle="modal" data-target="#myModal">Informações</a>
+					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+									  <div class="modal-dialog" role="document">
+										<div class="modal-content">
+										  <div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											<h3 class="modal-title" id="myModalLabel">Informações sobre Hospedagem</h3>
+										  </div>
+										  <div class="modal-body">
+										  <p>
+											<h4>
+											<p>Hóspede: {{pagamento.cliente}}</p>
+											<p>CPF: {{pagamento.cpf}}</p>
+											<p>Quarto: {{pagamento.quarto}}</p>
+											<p>Estadia: {{pagamento.estadia}} Dias</p>
+											<hr>
+											<p>Hospedagem: R$ {{pagamento.valor / 2}}</p>
+											<hr>
+											<p>Frigobar: R$ {{pagamento.valor / 6}}</p>
+											<hr>
+											<p>Lavanderia: R$ {{pagamento.valor / 6}}</p>
+											<hr>
+											<p>Restaurante: R$ {{pagamento.valor / 6}}</p>
+											<hr>
+											<p>Diversos: R$ {{pagamento.valor / 6}}</p>
+											<hr>
+											<center>
+												<p>Valor Total
+												<h3>R$ {{pagamento.valor}}</h3></p>
+											</center>
+											</h4>
+											
+										  <p>
+
+										  </div>
+										  <div class="modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+											<button type="button" class="btn btn-primary" data-dismiss="modal">Imprimir</button>											
+										  </div>
+											</div>
+										</div>
+						</div>
+				</th>
+				</tr>   
+			</tbody>
+		</table>
+
+  </body>
+</html>
